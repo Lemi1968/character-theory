@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
-public class CharacterFactory {
+public class CharacterFactory { 
 
 	public static CharacterFactory getInstance() {
 		return new CharacterFactory();
