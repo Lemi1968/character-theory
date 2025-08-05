@@ -54,7 +54,7 @@ public class ProcessRuntime {
 	
 	/**
 	 * Returns the result of the analysis as a string containing the results in a table format
-	 * | Step Title | Elaboration time |
+	 * | Step Title | Elapsed time | Used Memory |
 	 */
 	
 	public String getAnalysis() throws Exception{
