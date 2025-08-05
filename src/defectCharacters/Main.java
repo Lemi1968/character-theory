@@ -6,11 +6,12 @@ import java.util.List;
 import java.util.Map;
 
 public class Main {
-
+	/**
+	 * 1. Executes a certain procedure on defect characters, like the identification of duplicates
+	 * 2. Allows the analysis of the results, by showing findings and runtime statistics
+	 * 
+	 */
 	public static void main(String[] args) {
-		// Soll die folgenden Informationen ausgeben:
-		// 1. Statistiken: wieviele Objekte gescannt, wieviele Findings
-		// 2. Laufzeit, Memory
 		
 		int n=18;
 		
