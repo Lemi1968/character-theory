@@ -9,34 +9,36 @@ public class Main {
 	/**
 	 * 1. Executes a certain procedure on defect characters, like the identification of duplicates
 	 * 2. Allows the analysis of the results, by showing findings and runtime statistics
+	 * @throws Exception 
 	 * 
 	 */
-	public static void main(String[] args) {
+	public static void main(String[] args) throws Exception {
 		
-		int n=18;
 		
+		ProcessRuntime runtime = new ProcessRuntime();
+		//int n=12;
+		for (int n = 2;n<15;n++)
         {
-            System.out.println("Dubletten für n = "+n);
+
+			runtime.start("Dubletten für n = "+n);
+
             
-
-        	long start = System.nanoTime();
-        	//listClusteredDuplicates(n);
-
         	listDuplicates(n,  new StreamDuplicateDetector(true));
-        	long finish = System.nanoTime();
-        	long timeElapsed = (finish - start)/1000000;
-    		showMemoryStatistics();
-        	System.out.println("Analyse wurde in "+timeElapsed+"ms abgeschlossen");
-        	System.out.println("runtime/n="+timeElapsed/n);
-        	System.out.println("ln(runtime)/n="+Math.log(timeElapsed)/n);
+        	
+        	runtime.stop();
 
+        	
+//    		showMemoryStatistics();
+//        	System.out.println("Analyse wurde in "+timeElapsed+"ms abgeschlossen");
+//        	System.out.println("runtime/n="+timeElapsed/n);
+//        	System.out.println("ln(runtime)/n="+Math.log(timeElapsed)/n);
         }
+    	System.out.println(runtime.getAnalysis());
 	}
 	
 	private static void listDuplicates(int n, DuplicateDetector detector) {
 		CharacterFactory factory = new CharacterFactory();
 		Iterator<DefectCharacter> iterator = factory.getAll(n);	
-    	System.out.println(detector.getTitle());
  
 		List<Map.Entry<Integer, List<DefectCharacter>>> result = detector.groupCharactersByHashes(iterator);
 		result.forEach(entry -> System.out.println(entry));
