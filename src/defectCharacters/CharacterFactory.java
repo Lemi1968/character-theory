@@ -9,7 +9,7 @@ public class CharacterFactory {
 
 	public static CharacterFactory getInstance() {
 		return new CharacterFactory();
-	}
+	} 
 	
 	class FilteredIterator implements Iterator<DefectCharacter> {
 
