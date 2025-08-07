@@ -1,39 +1,28 @@
 package defectCharacters;
 
 import java.util.Iterator;
-
+/**
+ * Iterates over all Characters following the boolean-hierarchical order
+ * Can be used to generate streams
+ */
 class CharacterIterator implements Iterator<DefectCharacter> {
+	private Iterator<Word> wordIterator;
 	protected int n;
 	protected int max;
 	protected int current = 0;
 
 	public CharacterIterator(int n) {
-		this.n = n;
-		this.max = (int) (Math.pow(2, n-1));
+		this.wordIterator = new WordIterator(n);
 	}
 
 	@Override
 	public boolean hasNext() {
-		return (current < max);
+		return (this.wordIterator.hasNext());
 	}
 
 	@Override
 	public DefectCharacter next() {
-
-		int[] nextLetters = new int[Integer.bitCount(current)+1];
-
-		int lastPosition = -1;
-		int index = 0;
-		for (int i = 0; i <= n; i++) {
-			if ((current & ( 1 << i) ) != 0) {
-				nextLetters[index] = i - lastPosition;
-				lastPosition = i;
-				index++;
-			}
-		}
-		nextLetters[nextLetters.length-1] = n - lastPosition - 1;
-		current++;
-		return new DefectCharacter(new Word(nextLetters));
+		return new DefectCharacter(this.wordIterator.next());
 	}
 
 }
