@@ -31,53 +31,14 @@ public class CharacterFactory {
 		
 	}
 	
-	class IteratorForAll implements Iterator<DefectCharacter> {
-		protected int n;
-		protected int max;
-		protected int current = 0;
-
-		public IteratorForAll(int n) {
-			this.n = n;
-			this.max = (int) (Math.pow(2, n-1));
-		}
-
-		@Override
-		public boolean hasNext() {
-			return (current < max);
-		}
-
-		@Override
-		public DefectCharacter next() {
-
-			int[] nextLetters = new int[Integer.bitCount(current)+1];
-
-			int lastPosition = -1;
-			int index = 0;
-			for (int i = 0; i <= n; i++) {
-				if ((current & ( 1 << i) ) != 0) {
-					nextLetters[index] = i - lastPosition;
-					lastPosition = i;
-					index++;
-				}
-			}
-			nextLetters[nextLetters.length-1] = n - lastPosition - 1;
-			current++;
-			return new DefectCharacter(new Word(nextLetters));
-		}
-
-	}
-
 	Iterator<DefectCharacter> getAll(int n) {
-		return new IteratorForAll(n);
+		return new CharacterIterator(n);
 	}
 	
 	class IteratorOverPartition implements Iterator<DefectCharacter> {
-		private Partition p;
 		private int[] nextLetters;
 		
 		public IteratorOverPartition(Partition p) {
-			this.p = p;
-			
 			int sum = 0;
 			for (int i = 0; i < p.content.length; i++)
 				sum=sum+p.content[i];

@@ -22,7 +22,7 @@ public class DuplicateDetectorTest {
 	}
 	
 	void assertResultSize(DuplicateDetector out, int expectedSize, int n) {		
-		Iterator<DefectCharacter> iterator = factory.getAll(n);
+		Iterator<DefectCharacter> iterator = new CharacterIterator(n);
 		List<Map.Entry<Integer, List<DefectCharacter>>> result = out.groupCharactersByHashes(iterator);
 		assertEquals(expectedSize, result.size());
 	}

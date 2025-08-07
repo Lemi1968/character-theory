@@ -1,7 +1,6 @@
 package defectCharacters;
 
 import static org.junit.jupiter.api.Assertions.assertArrayEquals;
-import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -10,30 +9,6 @@ import java.util.Iterator;
 import org.junit.jupiter.api.Test;
 
 public class CharacterFactoryTest {
-	
-	@Test
-	void filtersBySignum() {
-		int n = 6;
-		CharacterFactory out = CharacterFactory.getInstance();
-		Iterator<DefectCharacter> iterator = out.getAll(n);
-		//Iterator<DefectCharacter> filteredIterator = new FilteredIterator(iterator);
-	}
-	
-	@Test
-	void iteratesOverAll() {
-		int n = 6;
-		CharacterFactory out = CharacterFactory.getInstance();
-		Iterator<DefectCharacter> iterator = out.getAll(n);
-		assertNotNull(iterator);
-		
-
-		int number;
-		for (number = 0; iterator.hasNext();number++)
-			assertNotNull(iterator.next());
-		
-		assertEquals(32,number);
-
-	}
 	
 	void assertNextLetters(int[] exp, Iterator<DefectCharacter> out) {
 		assertTrue(out.hasNext());

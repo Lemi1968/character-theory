@@ -44,11 +44,6 @@ public class Main {
 		result.forEach(entry -> System.out.println(entry));
 	}
 
-	private static void showMemoryStatistics() {
-		Runtime rt = Runtime.getRuntime();
-		System.out.println("Amount of used memory: " + ((rt.totalMemory()-rt.freeMemory())/1000000+"MB"));
-	}
-	
 	private static void listDuplicates(Iterator<DefectCharacter> iterator) {
 		HashMap<Integer,Word> counts = new HashMap<Integer,Word>();
 
