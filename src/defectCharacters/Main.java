@@ -19,26 +19,17 @@ public class Main {
 		//int n=12;
 		for (int n = 2;n<15;n++)
         {
-
 			runtime.start("Dubletten für n = "+n);
-
             
         	listDuplicates(n,  new StreamDuplicateDetector(true));
         	
         	runtime.stop();
-
-        	
-//    		showMemoryStatistics();
-//        	System.out.println("Analyse wurde in "+timeElapsed+"ms abgeschlossen");
-//        	System.out.println("runtime/n="+timeElapsed/n);
-//        	System.out.println("ln(runtime)/n="+Math.log(timeElapsed)/n);
         }
     	System.out.println(runtime.getAnalysis());
 	}
 	
 	private static void listDuplicates(int n, DuplicateDetector detector) {
-		CharacterFactory factory = new CharacterFactory();
-		Iterator<DefectCharacter> iterator = factory.getAll(n);	
+		Iterator<DefectCharacter> iterator = new CharacterIterator(n);	
  
 		List<Map.Entry<Integer, List<DefectCharacter>>> result = detector.groupCharactersByHashes(iterator);
 		result.forEach(entry -> System.out.println(entry));
