@@ -39,20 +39,20 @@ public class Main {
 		HashMap<Integer,Word> counts = new HashMap<Integer,Word>();
 
         while (iterator.hasNext()) {
-            DefectCharacter value = iterator.next();
-            Word duplicate = counts.get(value.hashCode());
+            DefectCharacter next = iterator.next();
+            Word duplicate = counts.get(next.hashCode());
             
             
             if ((duplicate != null) 
-            		&& (!value.getWord().isMirrorOf(duplicate))
-            		&& (value.word.getDenominatorWith(duplicate) == null)
-            		&& (value.word.getDenominatorWith(duplicate.getMirrored()) == null)
-            		&& (value.getVector() == new DefectCharacter(duplicate).getVector())
+            		&& (!next.getWord().isMirrorOf(duplicate))
+            		&& (next.word.getDenominatorWith(duplicate) == null)
+            		&& (next.word.getDenominatorWith(duplicate.getMirrored()) == null)
+            		&& (next.getVector() == new DefectCharacter(duplicate).getVector())
             		) {
-            		System.out.println(duplicate + " is a duplicate of " + value);
+            		System.out.println(duplicate + " is a duplicate of " + next);
             }
             else
-            	counts.put(value.hashCode(), value.word);
+            	counts.put(next.hashCode(), next.word);
         }
         
 	}

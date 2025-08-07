@@ -10,7 +10,7 @@ public class PartitionFactoryTest {
 	
 	@BeforeEach
 	void setUp() throws Exception {
-		out = new PartitionFactory();
+		out = new PartitionFactory(0);
 	}
 	
 	private void assertContentEquals(int[] expected,Partition actual){

@@ -11,100 +11,10 @@ public class CharacterFactory {
 		return new CharacterFactory();
 	} 
 	
-	class FilteredIterator implements Iterator<DefectCharacter> {
-
-		public FilteredIterator(Iterator<DefectCharacter> sourceIterator) {
-			
-		}
-		
-		@Override
-		public boolean hasNext() {
-			// TODO Auto-generated method stub
-			return false;
-		}
-
-		@Override
-		public DefectCharacter next() {
-			// TODO Auto-generated method stub
-			return null;
-		}
-		
-	}
-	
 	Iterator<DefectCharacter> getAll(int n) {
 		return new CharacterIterator(n);
 	}
 	
-	class IteratorOverPartition implements Iterator<DefectCharacter> {
-		private int[] nextLetters;
-		
-		public IteratorOverPartition(Partition p) {
-			int sum = 0;
-			for (int i = 0; i < p.content.length; i++)
-				sum=sum+p.content[i];
-			if (sum==0)
-				nextLetters = null;
-			else {
-				nextLetters = new int[sum];
-			}
-			
-			int position = 0;
-			for (int i = p.content.length-1; i >= 0; i--) {
-				for (int j = 0;j < p.content[i]; j++) {
-					nextLetters[position] = i+1;
-					position++;
-				}
-			}
-		}
-
-		@Override
-		public boolean hasNext() {
-			return (nextLetters != null);
-		}
-
-		@Override
-		public DefectCharacter next() {
-			if (nextLetters == null)
-				return null;
-			DefectCharacter result = new DefectCharacter(new Word(nextLetters));
-
-			// Determine letters of next character:
-			// - identify first letter increase from back to front
-			// - replace that letter with the last one
-			// - distribute all remaining letters from highest to lowest
-			if (nextLetters.length <= 1)
-				nextLetters = null;
-			else
-			{		
-				int position;
-				int[] content = new int[nextLetters.length];
-				for (position = nextLetters.length-2;
-						(position>=0) && (nextLetters[position]<=nextLetters[position+1]);
-						position--)
-					content[nextLetters[position]]++;
-				
-				if (nextLetters[position] <= nextLetters[position+1])
-					// This is the lowest word within this content
-					nextLetters = null;
-				else {
-					int highest = nextLetters[position];
-					nextLetters[position] = nextLetters[position+1];
-					nextLetters[position+1] = highest;
-					// Distribute the remaining content
-					position = position + 2;
-					for (int i = 0; i < content.length-1; i++)
-						for (int j = 1; j<=content[i];j++) {
-							nextLetters[position] = i;
-							position++;
-						}
-					
-				}
-			}
-			return result;
-			
-		}
-		
-	}
 	private void addCharactersWithContent(int[] letters, int position, int[] content, List<DefectCharacter> list) {
 		boolean contentFound = false;
 		position++;

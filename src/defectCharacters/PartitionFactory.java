@@ -1,7 +1,17 @@
 package defectCharacters;
 
-public class PartitionFactory {
-	public Partition getLargest( int sum ) {
+import java.util.Iterator;
+/**
+ * Iterates over all partitions for a given sum in a lexicographic order
+ */
+public class PartitionFactory implements Iterator<Partition>{
+	private Partition next;
+	
+	public PartitionFactory(int sum) {
+		next = getLargest(sum);
+	}
+	
+	public static Partition getLargest( int sum ) {
 		if (sum <= 0) return null;
 		int[] content = new int[sum];
 		content[sum-1] = 1;
@@ -46,5 +56,16 @@ public class PartitionFactory {
 		}		
 
 		return new Partition(resultContent);
+	}
+	@Override
+	public boolean hasNext() {
+		return (next != null);
+	}
+	@Override
+	public Partition next() {
+		Partition result = next;
+		next = getNext(next);
+		return result;
+
 	}
 }

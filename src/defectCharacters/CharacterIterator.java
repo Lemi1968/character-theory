@@ -7,9 +7,6 @@ import java.util.Iterator;
  */
 class CharacterIterator implements Iterator<DefectCharacter> {
 	private Iterator<Word> wordIterator;
-	protected int n;
-	protected int max;
-	protected int current = 0;
 
 	public CharacterIterator(int n) {
 		this.wordIterator = new WordIterator(n);
