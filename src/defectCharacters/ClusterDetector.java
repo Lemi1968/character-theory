@@ -14,7 +14,7 @@ public class ClusterDetector implements DuplicateDetector {
 	@Override
 	public List<Entry<Integer, List<DefectCharacter>>> groupCharactersByHashes(Iterator<DefectCharacter> iterator) {
 		DuplicateDetector streamDetector = new StreamDuplicateDetector(false);
-		PartitionFactory partitionFactory = new PartitionFactory(0);
+		PartitionIterator partitionFactory = new PartitionIterator(0);
 
 		
 		return null;

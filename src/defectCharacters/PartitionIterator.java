@@ -4,26 +4,26 @@ import java.util.Iterator;
 /**
  * Iterates over all partitions for a given sum in a lexicographic order
  */
-public class PartitionFactory implements Iterator<Partition>{
+public class PartitionIterator implements Iterator<Partition>{
 	private Partition next;
 	
-	public PartitionFactory(int sum) {
+	public PartitionIterator(int sum) {
 		next = getLargest(sum);
 	}
 	
-	public static Partition getLargest( int sum ) {
+	private static Partition getLargest( int sum ) {
 		if (sum <= 0) return null;
 		int[] content = new int[sum];
 		content[sum-1] = 1;
 		return new Partition(content);
 	}
-	public Partition getNext( Partition p ) {
+	private Partition getNext( Partition p ) {
 		// Return the next lexicographically smaller partition
 		// Examples:
 		// - 2 => 11
 		// - 42 => 411
 		// - 8 => 71 => 62 => 611 => 53 => 521 => 511 => 44 => 431 => 422 => 4211 => ...
-		
+		if (p == null) return null;
 		if (p.content.length == 1) return null;		
 		
 		// The first non-zero content bigger than 1 determines the necessary break-down
