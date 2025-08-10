@@ -14,7 +14,7 @@ public class DuplicateDetectorTest {
 	private static CharacterFactory factory = new CharacterFactory();
 	private static DuplicateDetector outIncludingMirrors = new StreamDuplicateDetector(false);
 	private static DuplicateDetector outExcludingMirrors = new StreamDuplicateDetector(true);
-	private static DuplicateDetector outClustered = new ClusterDetector();
+	private static DuplicateDetector outClustered = new ClusterDetector(5);
 	
 	@BeforeEach
 	void setUp() throws Exception {

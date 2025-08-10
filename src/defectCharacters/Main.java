@@ -17,12 +17,13 @@ public class Main {
 		
 		ProcessRuntime runtime = new ProcessRuntime();
 		//int n=12;
-		for (int n = 2;n<18;n++)
+		for (int n = 2;n<19;n++)
         {
 			System.gc();
 			runtime.start("Dubletten für n = "+n);
             
-        	listDuplicates(n,  new StreamDuplicateDetector(true));
+//        	listDuplicates(n,  new StreamDuplicateDetector(true));
+	      	listDuplicates(n,  new ClusterDetector(n));
         	
         	runtime.stop();
         }

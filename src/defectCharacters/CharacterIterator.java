@@ -11,6 +11,10 @@ class CharacterIterator implements Iterator<DefectCharacter> {
 	public CharacterIterator(int n) {
 		this.wordIterator = new WordIterator(n);
 	}
+	
+	public CharacterIterator(Iterator<Word> wordIterator) {
+		this.wordIterator = wordIterator;
+	}
 
 	@Override
 	public boolean hasNext() {

@@ -8,8 +8,7 @@ public class ClusterStreamDetector implements DuplicateDetector {
 
 	@Override
 	public String getTitle() {
-		// TODO Auto-generated method stub
-		return null;
+		return "Streams clustered by partitions";
 	}
 
 	@Override

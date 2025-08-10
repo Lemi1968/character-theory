@@ -32,7 +32,6 @@ public class StreamDuplicateDetector implements DuplicateDetector {
 
 	@Override
 	public String getTitle() {
-		// TODO Auto-generated method stub
 		return "Per teil-parallelisiertem Stream";
 	}
 
